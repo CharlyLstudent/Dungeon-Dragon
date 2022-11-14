@@ -26,10 +26,20 @@ public class Personnage {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
+
+    public String showNameAndTypeOfCreaction() {
         return "Votre Personnage" +
               ' ' + name + " sera un " + type ;
+    }
+
+    @Override
+    public String toString() {
+        return "Personnage{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", healthPoint=" + healthPoint +
+                ", attackDamage=" + attackDamage +
+                '}';
     }
 
     public static void main(String[] args) {

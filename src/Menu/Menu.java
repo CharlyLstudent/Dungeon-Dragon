@@ -1,15 +1,16 @@
 package Menu;
 
-import com.sun.source.tree.WhileLoopTree;
+import Personnages.Personnage;
 
 import java.util.Scanner;
 import java.util.Objects;
 
 public class Menu {
+    Scanner clavier = new Scanner(System.in);
+    String menuChoice;
     public void StartGame() {
 
-        Scanner clavier = new Scanner(System.in);
-        String menuChoice;
+
         System.out.println("1. Nouveau personnage | 2. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
         if (Objects.equals(menuChoice, "1")) {
@@ -24,34 +25,45 @@ public class Menu {
 
     }
 
-    public void CharacterChoice() {
-        Scanner clavier = new Scanner(System.in);
-        String menuChoice;
-        boolean choice = false;
-        do {
+    public String chooseCharacterType() {
             System.out.println("Quel personnage voulez-vous créer? 1. Guerrier | 2. Magicien | 3. Quitter");
             menuChoice = clavier.nextLine().toLowerCase();
+
             switch (menuChoice) {
                 case "1" ->{
                     System.out.println("Votre Guerrier est prêt!");
-                    choice = true;
+
+                    return "guerrier";
                 }
                 case "2" ->{
                     System.out.println("Votre Magicien est prêt!");
-                    choice = true;
+
+                    return"magicien";
+
                 }
                 case "3" -> {
                     System.out.println("good bye !");
                     System.exit(0);
+                    return null;
                 }
-                default -> System.out.println("Saisissez un choix valide.");
+                default ->{
+                    System.out.println("Saisissez un choix valide.");
+                    return chooseCharacterType();
+                }
             }
-        } while (!choice);
+
 
     }
 
-    public void CharacterName() {
+    public String chooseCharacterName() {
         System.out.println("Choisissez un nom pour votre personnage.");
+        menuChoice = clavier.nextLine().toLowerCase();
+        return menuChoice;
+    }
 
+    public  void modifyPlayerChoice(){
+        System.out.println("Êtes-vous d'accord avec ces choix?" );
+        System.out.println("1. Oui, à l'attaque! | 2. Non, je veux modifier" );
+        menuChoice = clavier.nextLine().toLowerCase();
     }
 }

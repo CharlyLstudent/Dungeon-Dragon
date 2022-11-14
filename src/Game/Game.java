@@ -2,16 +2,14 @@ package Game;
 import Menu.*;
 import Personnages.*;
 
-import java.util.Scanner;
-
 public class Game {
     public void fullGame(){
         Menu start = new Menu();
         start.StartGame();
-        start.CharacterChoice();
-        start.CharacterName();
-        Scanner clavier = new Scanner(System.in);
-        Personnage ChoixJoueur = new Personnage(clavier.nextLine(),"guerrier" );
-        System.out.println(ChoixJoueur);
+        String type = start.chooseCharacterType();
+        String name = start.chooseCharacterName();
+        Personnage ChoixJoueur = new Personnage(name,type);
+        System.out.println(ChoixJoueur.showNameAndTypeOfCreaction());
+        start.modifyPlayerChoice();
     }
 }
