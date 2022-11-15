@@ -8,6 +8,7 @@ public class Personnage {
     private int attackDamage;
     private EquipementDefensif defensif;
     private EquipementOffensif offensif;
+    private int pos;
 
     public Personnage(){
 
@@ -92,6 +93,13 @@ public class Personnage {
 
     public void setOffensif(EquipementOffensif offensif) {
         this.offensif = offensif;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+    public void setPos(int pos) {
+        this.pos = pos;
     }
 
 }

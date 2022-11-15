@@ -1,4 +1,5 @@
 package Game;
+
 import Menu.*;
 import Personnages.*;
 
@@ -9,19 +10,22 @@ public class Game {
     Menu start = new Menu();
 
     //function that start the full game by displaying menu functions
-    public void fullGame(){
+    public void fullGame() {
         start.StartGame();
         String type = start.chooseCharacterType();
         String name = start.chooseCharacterName();
-        Personnage persoDuJoueur = new Personnage(name,type);
+        Personnage persoDuJoueur = new Personnage(name, type);
         System.out.println(persoDuJoueur.showNameAndTypeOfCreation());
         start.modifyPlayerChoice(persoDuJoueur);
-
+        Board board = new Board(64);
+        board.toString(persoDuJoueur);
+        playATurn(persoDuJoueur,board,start);
     }
+
     //function that display the character's characteristic from the one chosen by the player
-    public void displayStatsOfCharacter(Personnage persoDuJoueur){
-        EquipementDefensif defensif = new EquipementDefensif(" ",0);
-        EquipementOffensif offensif = new EquipementOffensif(0," ");
+    public void displayStatsOfCharacter(Personnage persoDuJoueur) {
+        EquipementDefensif defensif = new EquipementDefensif(" ", 0);
+        EquipementOffensif offensif = new EquipementOffensif(0, " ");
         if (Objects.equals(persoDuJoueur.getType(), "guerrier")) {
             persoDuJoueur.setHealthPoint(10);
             persoDuJoueur.setAttackDamage(10);
@@ -50,6 +54,25 @@ public class Game {
             System.out.println(offensif);
             start.modifyPlayerChoice(persoDuJoueur);
         }
+    }
+
+    private int randomDice() {
+        return (int) (Math.random() * 6 + 1);
+    }
+
+    private void playATurn(Personnage personnage, Board board, Menu menu) {
+        while (personnage.getPos() < board.getNbCases()) {
+            int playerPos = personnage.getPos();
+            int dice = randomDice();
+            System.out.println(dice);
+            playerPos += dice;
+            personnage.setPos(playerPos);
+            board.toString(personnage);
+        }
+        if( personnage.getPos() >= board.getNbCases()){
+            start.endGame();
+        }
+
     }
 }
 

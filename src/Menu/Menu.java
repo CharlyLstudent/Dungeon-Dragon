@@ -89,4 +89,15 @@ public class Menu {
             }
         }
     }
+
+    public void endGame(){
+        System.out.println("Que voulez-faire?  1. Rejouer | 2. Quitter");
+        menuChoice =  clavier.nextLine().toLowerCase();
+        if(Objects.equals(menuChoice, "1")){
+            Game gameClass = new Game();
+            gameClass.fullGame();
+        } else if (Objects.equals(menuChoice, "2")) {
+            System.exit(0);
+        }
+    }
 }
