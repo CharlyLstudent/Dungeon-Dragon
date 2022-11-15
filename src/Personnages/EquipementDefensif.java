@@ -1,9 +1,14 @@
+package Personnages;
+
 public class EquipementDefensif {
     private String shield;
     private String philtre;
     private int defenseLevel;
     private String name;
-
+ public EquipementDefensif(String name, int defenseLevel){
+     this.name = name;
+     this. defenseLevel = defenseLevel;
+ }
     //getter & setter
     public String getShield() {
         return shield;
@@ -37,6 +42,10 @@ public class EquipementDefensif {
         this.name = name;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "EquipementDefensif" + "\r\n" +
+                "nom: " + name + "\r\n" +
+                "Niveau de défense: " + defenseLevel ;
+    }
 }

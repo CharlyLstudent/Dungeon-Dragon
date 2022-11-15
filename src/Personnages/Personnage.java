@@ -6,6 +6,8 @@ public class Personnage {
     private String type;
     private int healthPoint;
     private int attackDamage;
+    private EquipementDefensif defensif;
+    private EquipementOffensif offensif;
 
     public Personnage(){
 
@@ -16,30 +18,29 @@ public class Personnage {
 //        guerrier.setName("Enzo");
 //        System.out.println("je suis un " + guerrier.getType() + " j'ai " + guerrier.getHealthPoint() + " points de vie et " + guerrier.getAttackDamage() + " dégats d'attaque");
     }
-
     public Personnage(String name){
         this.name = name;
     }
 
-    public Personnage(String name,String type){
+    public Personnage (String name, String type){
         this.name = name;
         this.type = type;
+        this.healthPoint =  0;
+        this.attackDamage = 0;
+        this.defensif= new EquipementDefensif(" ", 0);
     }
-
-
-    public String showNameAndTypeOfCreaction() {
+    public String showNameAndTypeOfCreation() {
         return "Votre Personnage" +
-              ' ' + name + " sera un " + type ;
+              ' ' + name + " sera un " + type;
     }
 
     @Override
     public String toString() {
-        return "Personnage{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", healthPoint=" + healthPoint +
-                ", attackDamage=" + attackDamage +
-                '}';
+        return
+                "Nom: " + name + "\r\n" +
+                "Type: " + type + "\r\n" +
+                "Points de vie: " + healthPoint + "\r\n" +
+                "Dégats d'attaque: " + attackDamage + "\r\n";
     }
 
     public static void main(String[] args) {
@@ -77,6 +78,20 @@ public class Personnage {
     public void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
     }
+    public EquipementDefensif getDefensif() {
+        return defensif;
+    }
 
+    public void setDefensif(EquipementDefensif defensif) {
+        this.defensif = defensif;
+    }
+
+    public EquipementOffensif getOffensif() {
+        return offensif;
+    }
+
+    public void setOffensif(EquipementOffensif offensif) {
+        this.offensif = offensif;
+    }
 
 }

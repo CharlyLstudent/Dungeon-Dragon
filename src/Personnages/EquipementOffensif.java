@@ -1,9 +1,16 @@
+package Personnages;
+
 public class EquipementOffensif {
 
     private String weapon;
     private String spell;
     private int attackLevel;
     private String name;
+
+    public EquipementOffensif(int attackLevel, String name) {
+        this.attackLevel = attackLevel;
+        this.name = name;
+    }
 
     //getter & setter
     public String getWeapon() {
@@ -38,5 +45,10 @@ public class EquipementOffensif {
         this.name = name;
     }
 
-
+    @Override
+    public String toString() {
+        return "Equipement offensif: " + "\r\n"+
+                "Nom: " + name + "\r\n" +
+                "Dégats: " + attackLevel + "\r\n";
+    }
 }
