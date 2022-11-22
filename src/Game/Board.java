@@ -1,24 +1,39 @@
 package Game;
 
+import Personnages.Equipement.ObjetAuSol.Potion;
+import Personnages.Equipement.Stuff.Armes;
 import Personnages.Personnage;
 
+import java.util.ArrayList;
+
 public class Board {
-    private int nbCases;
+   private  ArrayList<Cases> slot = new ArrayList<>();
+    public Board() {
 
-    public Board(int nbCases) {
-        this.nbCases = nbCases;
+        slot.add(new CaseVide());
+        slot.add(new CaseVide());
+        slot.add(new Armes(5,"Lame du roi déchu"));
+        slot.add(new Potion(5));
+        slot.add(new Potion(3));
+        slot.add(new CaseVide());
+
+
+//        for(Cases cases:slot){
+//            cases.interact();
+//        }
     }
 
-    public int getNbCases() {
-        return nbCases;
+    public ArrayList<Cases> getSlot() {
+        return slot;
     }
 
-    public void setNbCases(int nbCases) {
-        this.nbCases = nbCases;
+    public void setSlot(ArrayList<Cases> slot) {
+        this.slot = slot;
     }
-    public void toString(Personnage player) {
+
+    public void displayGameBoard(Personnage player) {
         System.out.print("Plateau: ");
-        for (int i = 0; i < nbCases; i++) {
+        for (int i = 0; i < slot.size(); i++) {
             if (player.getPos() == i) {
                 System.out.print("***|");
             } else {

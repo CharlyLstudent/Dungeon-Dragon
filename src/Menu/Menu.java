@@ -10,7 +10,11 @@ public class Menu {
 
     Scanner clavier = new Scanner(System.in);
     String menuChoice;
-//function to display the text to chose for create character or leave the game
+
+
+    /**
+     * function to display the text to chose for create character or leave the game
+     */
     public void StartGame() {
         System.out.println("1. Nouveau personnage | 2. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
@@ -25,11 +29,20 @@ public class Menu {
         }
 
     }
-//function to display the text to chose the character type
+
+    /**
+     * function to display the text to choose the character type
+     *
+     * @return a String to identify what character the player chose.
+     * Default return the function to make a recursive call of the function
+     */
+
     public String chooseCharacterType() {
         System.out.println("Quel personnage voulez-vous créer? 1. Guerrier | 2. Magicien | 3. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
-//switch for the different case between the character choice
+
+        // switch for the different case between the character choice
+
         switch (menuChoice) {
             case "1" -> {
                 System.out.println("Votre Guerrier est prêt!");
@@ -40,7 +53,6 @@ public class Menu {
                 System.out.println("Votre Magicien est prêt!");
 
                 return "magicien";
-
             }
             case "3" -> {
                 System.out.println("good bye !");
@@ -52,48 +64,45 @@ public class Menu {
                 return chooseCharacterType();
             }
         }
-
-
     }
-//function to chose the character name based on the player typing
+
+    /**
+     * function to choose the character name based on the player typing
+     *
+     * @return the text typed by the player to use it for the name of the character
+     */
     public String chooseCharacterName() {
         System.out.println("Choisissez un nom pour votre personnage.");
         menuChoice = clavier.nextLine().toLowerCase();
         return menuChoice;
     }
-//function to modify the previous choice of name and type
+
+    /**
+     * function to modify the previous choice of name and type
+     *
+     * @param persoDuJoueur used to get the object created by the player (his character)
+     */
     public void modifyPlayerChoice(Personnage persoDuJoueur) {
         System.out.println("Êtes-vous d'accord avec ces choix?");
         System.out.println("1. Oui, à l'attaque! | 2. Voir mes stats | 3. Non, je veux modifier | 4. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
-       //swtich to chose a condition based on player choice
-        switch (menuChoice) {
-            //case one start the actual game
-            case "1" -> System.out.println("Démarrage de la partie...");
-            //case two see the stats of the current character
-            case "2" -> {
-                System.out.println("Voici les statistiques de votre personnage: ");
-                Game gameClass = new Game();
-                gameClass.displayStatsOfCharacter(persoDuJoueur);
-            }
-            //case three edit the character type and name and start the same method again for the choice display
-            case "3" -> {
-                persoDuJoueur.setType(chooseCharacterType());
-                persoDuJoueur.setName(chooseCharacterName());
-                modifyPlayerChoice(persoDuJoueur);
-            }
-            // case four leave the game
-            case "4" -> {
-                System.out.println("good bye !");
-                System.exit(0);
-            }
-        }
+        Game gameClass = new Game();
+        gameClass.modifyPlayerCharacter(menuChoice, persoDuJoueur);
     }
 
-    public void endGame(){
+    public String throwDice() {
+        System.out.println("1. Lancer les dés| 2. info du personnage | 3. Quitter");
+        menuChoice = clavier.nextLine().toLowerCase();
+        return menuChoice;
+    }
+
+    /**
+     * function to either restart the game from beginning or quit
+     */
+    public void endGame() {
         System.out.println("Que voulez-faire?  1. Rejouer | 2. Quitter");
-        menuChoice =  clavier.nextLine().toLowerCase();
-        if(Objects.equals(menuChoice, "1")){
+        menuChoice = clavier.nextLine().toLowerCase();
+        if (Objects.equals(menuChoice, "1")) {
             Game gameClass = new Game();
             gameClass.fullGame();
         } else if (Objects.equals(menuChoice, "2")) {

@@ -2,77 +2,129 @@ package Game;
 
 import Menu.*;
 import Personnages.*;
+import Personnages.Type.Guerrier;
+import Personnages.Type.Magicien;
 
-import java.util.IdentityHashMap;
 import java.util.Objects;
 
 public class Game {
     Menu start = new Menu();
+    Personnage persoDuJoueur;
 
-    //function that start the full game by displaying menu functions
+    /**
+     * function that start the full game by displaying menu functions
+     */
     public void fullGame() {
+
         start.StartGame();
         String type = start.chooseCharacterType();
         String name = start.chooseCharacterName();
-        Personnage persoDuJoueur = new Personnage(name, type);
+        switch (type) {
+            case "guerrier" -> persoDuJoueur = new Guerrier(name, type);
+            case "magicien" -> persoDuJoueur = new Magicien(name, type);
+        }
         System.out.println(persoDuJoueur.showNameAndTypeOfCreation());
         start.modifyPlayerChoice(persoDuJoueur);
-        Board board = new Board(64);
-        board.toString(persoDuJoueur);
-        playATurn(persoDuJoueur,board,start);
+        Board board = new Board();
+        board.displayGameBoard(persoDuJoueur);
+        chooseInGameOptions(persoDuJoueur, board);
     }
 
-    //function that display the character's characteristic from the one chosen by the player
+    /**
+     * function that display the character's characteristic from the one chosen by the player
+     *
+     * @param persoDuJoueur the character that the player created
+     */
     public void displayStatsOfCharacter(Personnage persoDuJoueur) {
-        EquipementDefensif defensif = new EquipementDefensif(" ", 0);
-        EquipementOffensif offensif = new EquipementOffensif(0, " ");
         if (Objects.equals(persoDuJoueur.getType(), "guerrier")) {
-            persoDuJoueur.setHealthPoint(10);
-            persoDuJoueur.setAttackDamage(10);
-            persoDuJoueur.setName(persoDuJoueur.getName());
-            persoDuJoueur.setType("guerrier");
-            defensif.setName("Bouclier");
-            defensif.setDefenseLevel(3);
-            offensif.setName("Epée");
-            offensif.setAttackLevel(2);
             System.out.println(persoDuJoueur);
-            System.out.println(defensif);
-            System.out.println(offensif);
             start.modifyPlayerChoice(persoDuJoueur);
 
         } else if (Objects.equals(persoDuJoueur.getType(), "magicien")) {
-            persoDuJoueur.setHealthPoint(6);
-            persoDuJoueur.setAttackDamage(15);
-            persoDuJoueur.setName(persoDuJoueur.getName());
-            persoDuJoueur.setType("magicien");
-            defensif.setName("philtre");
-            defensif.setDefenseLevel(3);
-            offensif.setName("Sort de feu");
-            offensif.setAttackLevel(5);
             System.out.println(persoDuJoueur);
-            System.out.println(defensif);
-            System.out.println(offensif);
             start.modifyPlayerChoice(persoDuJoueur);
         }
     }
 
+    /**
+     * creation of the dice
+     */
     private int randomDice() {
-        return (int) (Math.random() * 6 + 1);
+//        return (int) (Math.random() * 6 + 1);
+        return 1;
     }
 
-    private void playATurn(Personnage personnage, Board board, Menu menu) {
-        while (personnage.getPos() < board.getNbCases()) {
-            int playerPos = personnage.getPos();
-            int dice = randomDice();
-            System.out.println(dice);
-            playerPos += dice;
-            personnage.setPos(playerPos);
-            board.toString(personnage);
+    /**
+     * function to play a turn in the game with the dice.
+     *
+     * @param personnage the class used to set and get the pos of the character.
+     * @param board      the class used to make the board.
+     */
+    private void chooseInGameOptions(Personnage personnage, Board board) {
+        switch (start.throwDice()) {
+            case "1" -> playATurn(personnage, board);
+            case "2" -> System.out.println(personnage.toString());
+            case "3" -> System.exit(0);
         }
-        if( personnage.getPos() >= board.getNbCases()){
-            start.endGame();
-        }
+    }
 
+    private void playATurn(Personnage personnage, Board board) {
+        while (true) {
+            int dice = randomDice();
+            try {
+                personnage.setPos(personnage.getPos() + dice);
+                if (persoDuJoueur.getPos() > board.getSlot().size()) {
+                    throw new PlayerOutOfBoard();
+                }
+                System.out.println(dice);
+                board.displayGameBoard(personnage);
+                board.getSlot().get(personnage.getPos()).interact();
+            } catch (PlayerOutOfBoard e) {
+                System.out.println(e);
+                break;
+            }
+
+        }
+        start.endGame();
+    }
+
+
+    /**
+     * function to start the game,to see the character stats, to modify the player's character (name and type) or leave the game.
+     *
+     * @param menuChoice    the variable used to get the text typed by the player.
+     * @param persoDuJoueur the player's character.
+     */
+    public void modifyPlayerCharacter(String menuChoice, Personnage persoDuJoueur) {
+        //switch to choose a condition based on player choice
+        switch (menuChoice) {
+            //case one start the actual game
+            case "1" -> System.out.println("Démarrage de la partie...");
+            //case two see the stats of the current character
+            case "2" -> {
+                System.out.println("Voici les statistiques de votre personnage: ");
+                displayStatsOfCharacter(persoDuJoueur);
+            }
+            //case three edit the character type and name and start the same method again for the choice display
+            case "3" -> {
+                String type = start.chooseCharacterType();
+                String name = start.chooseCharacterName();
+                switch (type) {
+                    case "guerrier" -> {
+                        persoDuJoueur = new Guerrier(name, type);
+                        start.modifyPlayerChoice(persoDuJoueur);
+                    }
+                    case "magicien" -> {
+                        persoDuJoueur = new Magicien(name, type);
+                        start.modifyPlayerChoice(persoDuJoueur);
+                    }
+                }
+            }
+            // case four leave the game
+            case "4" -> {
+                System.out.println("good bye !");
+                System.exit(0);
+            }
+        }
     }
 }
-

@@ -1,11 +1,10 @@
-package Personnages;
+package Personnages.Equipement;
 
-public class EquipementOffensif {
+abstract public class EquipementOffensif {
+   protected String name;
+    private String type;
+    protected int attackLevel;
 
-    private String weapon;
-    private String spell;
-    private int attackLevel;
-    private String name;
 
     public EquipementOffensif(int attackLevel, String name) {
         this.attackLevel = attackLevel;
@@ -13,20 +12,12 @@ public class EquipementOffensif {
     }
 
     //getter & setter
-    public String getWeapon() {
-        return weapon;
+    public String getType() {
+        return type;
     }
 
-    public void setWeapon(String weapon) {
-        this.weapon = weapon;
-    }
-
-    public String getSpell() {
-        return spell;
-    }
-
-    public void setSpell(String spell) {
-        this.spell = spell;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getAttackLevel() {
