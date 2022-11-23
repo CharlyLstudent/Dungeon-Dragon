@@ -5,7 +5,6 @@ import Personnages.*;
 import Personnages.AlliesCharacters.Guerrier;
 import Personnages.AlliesCharacters.Magicien;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game {
@@ -28,7 +27,7 @@ public class Game {
         start.modifyPlayerChoice(persoDuJoueur);
         Board board = new Board();
         board.displayGameBoard(persoDuJoueur);
-        chooseInGameOptions(persoDuJoueur, board);
+        playATurn(persoDuJoueur,board);
     }
 
     /**
@@ -61,34 +60,28 @@ public class Game {
      * @param personnage the class used to set and get the pos of the character.
      * @param board      the class used to make the board.
      */
-    private void chooseInGameOptions(Personnage personnage, Board board) {
-        switch (start.throwDice()) {
-            case "1" -> playATurn(personnage, board);
-            case "2" -> System.out.println(personnage.toString());
-            case "3" -> System.exit(0);
-        }
-    }
+
 
     private void playATurn(Personnage personnage, Board board) {
+
         while (true) {
-            int dice = randomDice();
-            try {
-//                personnage.setPos(personnage.getPos() + dice);
-//                int newPos = personnage.getPos() + dice;
-//                if (newPos > board.getSlot().size()) {
-//                    throw new PlayerOutOfBoard();
-//                } else {
-//                    personnage.setPos(newPos);
-//                }
-                start.throwDice();
-                board.movePersonnage(personnage, dice);
-                System.out.println(dice);
-                board.displayGameBoard(personnage);
-                //board.interact(personnage);
-                board.getSlot().get(personnage.getPos()).interact(personnage);// faire une fonction qui vas récupérer position, récupérer case et récupérer l'interact, récupérer position du personnage.
-            } catch (PlayerOutOfBoard e) {
-                System.out.println(e);
-                break;
+            String gameOption = start.playOptionInGame();
+            if(Objects.equals(gameOption, "jouer")){
+                int dice = randomDice();
+                try {
+                    board.movePersonnage(personnage, dice);
+                    System.out.println(dice);
+                    board.displayGameBoard(personnage);
+                    //board.interact(personnage);
+                    board.getSlot().get(personnage.getPos()).interact(personnage);// faire une fonction qui vas récupérer position, récupérer case et récupérer l'interact, récupérer position du personnage.
+                } catch (PlayerOutOfBoard e) {
+                    System.out.println(e);
+                    break;
+                }
+            }else if(Objects.equals(gameOption,"stats")) {
+                System.out.println(persoDuJoueur);
+            } else if (Objects.equals(gameOption, "exit")) {
+                System.exit(0);
             }
         }
         start.endGame();

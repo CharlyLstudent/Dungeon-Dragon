@@ -1,8 +1,9 @@
 package Personnages;
 
+import Game.Cases;
 import Game.PlayerOutOfBoard;
 
-abstract public class Personnage {
+abstract public class Personnage{
 
     protected String name;
     protected String type;

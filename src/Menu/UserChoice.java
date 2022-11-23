@@ -1,5 +1,5 @@
 package Menu;
 
 public enum UserChoice {
-    PLAY, SHOW_INFOS, QUIT
+    PLAY, SHOW_INFOS, QUIT;
 }

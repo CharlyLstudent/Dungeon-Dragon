@@ -21,6 +21,7 @@ public class Board {
 
         slot.add(new CaseVide());
         slot.add(new CaseVide());
+        slot.add(new Thunder());
         slot.add(new PetitePotion());
         slot.add(new GrandePotion());
         slot.add(new Dragons());
@@ -29,7 +30,6 @@ public class Board {
         slot.add(new Massue());
         slot.add(new Sword());
         slot.add(new FireBall());
-        slot.add(new Thunder());
 
 
 //        for(Cases cases:slot){

@@ -12,5 +12,8 @@ public class Sorts extends EquipementOffensif implements Cases {
     @Override
     public void interact(Personnage personnage) {
         System.out.println("vous avez trouvez " + name + " !");
+
+        int newDamage = personnage.getAttackDamage() + attackLevel;
+       personnage.setAttackDamage(newDamage);
     }
 }

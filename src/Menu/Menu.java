@@ -90,11 +90,28 @@ public class Menu {
         gameClass.modifyPlayerCharacter(menuChoice, persoDuJoueur);
     }
 
-    public String throwDice() {
+    public String playOptionInGame() {
         System.out.println("1. Lancer les dés| 2. info du personnage | 3. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
-        return menuChoice;
+        switch (menuChoice) {
+            case "1" -> {
+                return "jouer";
+
+            }
+            case "2" -> {
+                return "stats";
+            }
+
+            case "3" -> {
+                return "exit";
+            }
+            default -> {
+                System.out.println("Saisissez un choix valide.");
+                return null;
+            }
+        }
     }
+
 
     /**
      * function to either restart the game from beginning or quit
