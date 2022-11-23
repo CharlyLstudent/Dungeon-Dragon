@@ -1,7 +1,16 @@
 package Game;
 
-import Personnages.Equipement.ObjetAuSol.Potion;
-import Personnages.Equipement.Stuff.Armes;
+import Personnages.EnnemiesCharacters.Dragons;
+import Personnages.EnnemiesCharacters.Goblins;
+import Personnages.EnnemiesCharacters.Wizards;
+import Personnages.Equipement.ObjetAuSol.ArmesGuerrier.Massue;
+import Personnages.Equipement.ObjetAuSol.ArmesGuerrier.Sword;
+import Personnages.Equipement.ObjetAuSol.ArmesMagicien.FireBall;
+import Personnages.Equipement.ObjetAuSol.ArmesMagicien.Thunder;
+import Personnages.Equipement.ObjetAuSol.Soins.GrandePotion;
+import Personnages.Equipement.ObjetAuSol.Soins.PetitePotion;
+import Personnages.Equipement.ObjetAuSol.Soins.Potion;
+import Personnages.Equipement.StuffPersonnage.Armes;
 import Personnages.Personnage;
 
 import java.util.ArrayList;
@@ -12,15 +21,28 @@ public class Board {
 
         slot.add(new CaseVide());
         slot.add(new CaseVide());
-        slot.add(new Armes(5,"Lame du roi déchu"));
-        slot.add(new Potion(5));
-        slot.add(new Potion(3));
-        slot.add(new CaseVide());
+        slot.add(new PetitePotion());
+        slot.add(new GrandePotion());
+        slot.add(new Dragons());
+        slot.add(new Goblins());
+        slot.add(new Wizards());
+        slot.add(new Massue());
+        slot.add(new Sword());
+        slot.add(new FireBall());
+        slot.add(new Thunder());
 
 
 //        for(Cases cases:slot){
 //            cases.interact();
 //        }
+    }
+
+    public void movePersonnage(Personnage personnage, int dice) throws PlayerOutOfBoard {
+
+        if(personnage.getPos()+dice >= slot.size()){
+            throw new PlayerOutOfBoard();
+        }
+        personnage.setPos(personnage.getPos()+dice);
     }
 
     public ArrayList<Cases> getSlot() {

@@ -1,7 +1,7 @@
-package Personnages.Type;
+package Personnages.AlliesCharacters;
 
-import Personnages.Equipement.Stuff.Armes;
-import Personnages.Equipement.Stuff.Bouclier;
+import Personnages.Equipement.StuffPersonnage.Armes;
+import Personnages.Equipement.StuffPersonnage.Bouclier;
 import Personnages.Personnage;
 
 

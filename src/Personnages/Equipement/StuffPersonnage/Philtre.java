@@ -1,4 +1,4 @@
-package Personnages.Equipement.Stuff;
+package Personnages.Equipement.StuffPersonnage;
 
 import Personnages.Equipement.EquipementDefensif;
 

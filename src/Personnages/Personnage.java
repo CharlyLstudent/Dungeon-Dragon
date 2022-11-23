@@ -20,6 +20,11 @@ abstract public class Personnage {
         this.attackDamage = 0;
 
     }
+    public Personnage(String name, int healthPoint, int attackDamage){
+        this.name = name;
+        this.healthPoint = healthPoint;
+        this.attackDamage = attackDamage;
+    }
     public String showNameAndTypeOfCreation() {
         return "Votre Personnage" +
               ' ' + name + " sera un " + type;

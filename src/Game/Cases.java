@@ -1,6 +1,8 @@
 package Game;
 
 
+import Personnages.Personnage;
+
 public interface Cases {
-    public void interact();
+    public void interact(Personnage personnage);
 }

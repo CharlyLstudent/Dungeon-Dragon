@@ -1,7 +1,7 @@
-package Personnages.Type;
+package Personnages.AlliesCharacters;
 
-import Personnages.Equipement.Stuff.Philtre;
-import Personnages.Equipement.Stuff.Sorts;
+import Personnages.Equipement.StuffPersonnage.Philtre;
+import Personnages.Equipement.StuffPersonnage.Sorts;
 import Personnages.Personnage;
 
 public class Magicien extends Personnage {

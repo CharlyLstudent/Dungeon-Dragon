@@ -2,9 +2,10 @@ package Game;
 
 import Menu.*;
 import Personnages.*;
-import Personnages.Type.Guerrier;
-import Personnages.Type.Magicien;
+import Personnages.AlliesCharacters.Guerrier;
+import Personnages.AlliesCharacters.Magicien;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game {
@@ -72,22 +73,30 @@ public class Game {
         while (true) {
             int dice = randomDice();
             try {
-                personnage.setPos(personnage.getPos() + dice);
-                if (persoDuJoueur.getPos() > board.getSlot().size()) {
-                    throw new PlayerOutOfBoard();
-                }
+//                personnage.setPos(personnage.getPos() + dice);
+//                int newPos = personnage.getPos() + dice;
+//                if (newPos > board.getSlot().size()) {
+//                    throw new PlayerOutOfBoard();
+//                } else {
+//                    personnage.setPos(newPos);
+//                }
+                start.throwDice();
+                board.movePersonnage(personnage, dice);
                 System.out.println(dice);
                 board.displayGameBoard(personnage);
-                board.getSlot().get(personnage.getPos()).interact();
+                //board.interact(personnage);
+                board.getSlot().get(personnage.getPos()).interact(personnage);// faire une fonction qui vas récupérer position, récupérer case et récupérer l'interact, récupérer position du personnage.
             } catch (PlayerOutOfBoard e) {
                 System.out.println(e);
                 break;
             }
-
         }
         start.endGame();
     }
 
+    private void getInteractOfCases(Board board, Personnage personnage){
+
+    }
 
     /**
      * function to start the game,to see the character stats, to modify the player's character (name and type) or leave the game.
