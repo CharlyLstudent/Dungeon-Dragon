@@ -14,5 +14,6 @@ public class Ennemies extends Personnage implements Cases {
     @Override
     public void interact(Personnage personnage) {
         System.out.println( "vous rencontrez un " + name + " !");
+
     }
 }

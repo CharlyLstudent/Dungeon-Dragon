@@ -16,27 +16,26 @@ import Personnages.Personnage;
 import java.util.ArrayList;
 
 public class Board {
-   private  ArrayList<Cases> slot = new ArrayList<>();
+    private  ArrayList<Cases> slot = new ArrayList<>();
     public Board() {
-
-        slot.add(new CaseVide());
-        slot.add(new CaseVide());
-        slot.add(new Thunder());
-        slot.add(new PetitePotion());
-        slot.add(new GrandePotion());
-        slot.add(new Dragons());
-        slot.add(new Goblins());
-        slot.add(new Wizards());
-        slot.add(new Massue());
-        slot.add(new Sword());
-        slot.add(new FireBall());
-
-
+        int nbCase = 64;
+        for(int i =0; i < nbCase; i++){
+            switch(i){
+                case 45, 52, 56, 62 -> slot.add(new Dragons());
+                case 10, 20, 25, 32, 35, 36, 37, 40, 44, 47 -> slot.add(new Wizards());
+                case 3, 6, 9, 12, 15, 18, 21, 24, 27, 30 -> slot.add(new Goblins());
+                case 2, 11, 5, 22, 38 -> slot.add(new Massue());
+                case 19, 26, 42, 53 -> slot.add(new Sword());
+                case 1, 4, 8, 17, 23 -> slot.add(new Thunder());
+                case 48, 49 ->  slot.add(new FireBall());
+                case 7, 13, 31, 33, 39, 43 -> slot.add(new PetitePotion());
+                case 28, 41 -> slot.add(new GrandePotion());
+            }
+        }
 //        for(Cases cases:slot){
 //            cases.interact();
 //        }
     }
-
     public void movePersonnage(Personnage personnage, int dice) throws PlayerOutOfBoard {
 
         if(personnage.getPos()+dice >= slot.size()){

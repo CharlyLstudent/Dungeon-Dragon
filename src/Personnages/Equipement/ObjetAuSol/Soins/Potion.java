@@ -14,6 +14,8 @@ public class Potion implements Cases {
 
     @Override
     public void interact(Personnage personnage) {
-            System.out.println("Vous avez trouvez " +  name + " !");
+            System.out.println("Vous avez trouvez " +  name + " ! Vous vous sentez plus vivant.");
+            int newHealth = personnage.getHealthPoint() + soin;
+            personnage.setHealthPoint(newHealth);
     }
 }
