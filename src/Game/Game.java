@@ -63,8 +63,8 @@ public class Game {
 
 
     private void playATurn(Personnage personnage, Board board) {
-
-        while (true) {
+            boolean gameStatus = true;
+        while (gameStatus) {
             String gameOption = start.playOptionInGame();
             if(Objects.equals(gameOption, "jouer")){
                 int dice = randomDice();
@@ -81,7 +81,7 @@ public class Game {
             }else if(Objects.equals(gameOption,"stats")) {
                 System.out.println(persoDuJoueur);
             } else if (Objects.equals(gameOption, "exit")) {
-                System.exit(0);
+                gameStatus = false;
             }
         }
         start.endGame();
