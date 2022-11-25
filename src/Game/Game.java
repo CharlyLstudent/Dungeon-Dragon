@@ -28,6 +28,7 @@ public class Game {
         Board board = new Board();
         board.displayGameBoard(persoDuJoueur);
         playATurn(persoDuJoueur,board);
+
     }
 
     /**
@@ -67,6 +68,7 @@ public class Game {
         while (gameStatus) {
             String gameOption = start.playOptionInGame();
             if(Objects.equals(gameOption, "jouer")){
+                characterIsDead();
                 int dice = randomDice();
                 try {
                     board.movePersonnage(personnage, dice);
@@ -85,10 +87,6 @@ public class Game {
             }
         }
         start.endGame();
-    }
-
-    private void getInteractOfCases(Board board, Personnage personnage){
-
     }
 
     /**
@@ -127,6 +125,12 @@ public class Game {
                 System.out.println("good bye !");
                 System.exit(0);
             }
+        }
+    }
+    public void characterIsDead(){
+        if (persoDuJoueur.getHealthPoint() <= 0){
+            System.out.println("Vous-êtes mort.");
+            start.endGame();
         }
     }
 }

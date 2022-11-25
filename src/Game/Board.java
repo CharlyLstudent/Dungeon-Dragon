@@ -53,63 +53,63 @@ public class Board {
 
         while (dragon > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Dragons());
                 dragon = dragon - 1;
             }
         }
         while (wizard > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Wizards());
                 wizard = wizard - 1;
             }
         }
         while (goblin > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Goblins());
                 goblin = goblin - 1;
             }
         }
         while (massue > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Massue());
                 massue = massue - 1;
             }
         }
         while (sword > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Sword());
                 sword = sword - 1;
             }
         }
         while (thunder > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new Thunder());
                 thunder = thunder - 1;
             }
         }
         while (fireBall > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new FireBall());
                 fireBall = fireBall - 1;
             }
         }
         while (smallPotion > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new PetitePotion());
                 smallPotion = smallPotion - 1;
             }
         }
         while (bigPotion > 0) {
             int random = (int) (Math.random() * nbCase + 1);
-            if(slot.get(random)instanceof CaseVide) {
+            if (slot.get(random) instanceof CaseVide) {
                 slot.set(random, new GrandePotion());
                 bigPotion = bigPotion - 1;
             }
