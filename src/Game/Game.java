@@ -51,8 +51,7 @@ public class Game {
      * creation of the dice
      */
     private int randomDice() {
-//        return (int) (Math.random() * 6 + 1);
-        return 1;
+        return (int) (Math.random() * 6 + 1);
     }
 
     /**
@@ -68,7 +67,6 @@ public class Game {
         while (gameStatus) {
             String gameOption = start.playOptionInGame();
             if(Objects.equals(gameOption, "jouer")){
-                characterIsDead();
                 int dice = randomDice();
                 try {
                     board.movePersonnage(personnage, dice);
@@ -125,12 +123,6 @@ public class Game {
                 System.out.println("good bye !");
                 System.exit(0);
             }
-        }
-    }
-    public void characterIsDead(){
-        if (persoDuJoueur.getHealthPoint() <= 0){
-            System.out.println("Vous-êtes mort.");
-            start.endGame();
         }
     }
 }

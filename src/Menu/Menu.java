@@ -16,6 +16,7 @@ public class Menu {
      * function to display the text to chose for create character or leave the game
      */
     public void StartGame() {
+        System.out.println("Bonjour et bienvenue dans le monde de Donjon & Dragon");
         System.out.println("1. Nouveau personnage | 2. Quitter");
         menuChoice = clavier.nextLine().toLowerCase();
         if (Objects.equals(menuChoice, "1")) {
@@ -125,5 +126,15 @@ public class Menu {
         } else if (Objects.equals(menuChoice, "2")) {
             System.exit(0);
         }
+    }
+    public String combatInteractionChoice(){
+        System.out.println("Que voulez-faire?  1. Attaquer | 2. Fuir");
+        menuChoice = clavier.nextLine().toLowerCase();
+        if(Objects.equals(menuChoice,"1")){
+            return "attaquer";
+        }else if(Objects.equals(menuChoice,"2")){
+            return "fuir";
+        }
+        return null;
     }
 }

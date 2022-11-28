@@ -11,7 +11,7 @@ public class Guerrier extends Personnage {
     public Guerrier(String name, String type) {
         super(name, type);
         this.healthPoint = 10;
-        this.attackDamage = 10;
+        this.attackDamage = 1;
         arme = new Armes(5, "Épée de doran");
         bouclier = new Bouclier("Bouclier de doran", 5);
     }
